@@ -43,7 +43,7 @@ WorldArena is a unified benchmark designed to systematically evaluate embodied w
 Quick start:
 - install dependencies and run metrics with `video_quality/README.md`
 - configure local checkpoints in `video_quality/config/config.yaml`
-- use sample inputs under `source/summary.json`
+- prepare your own `summary.json`, GT videos, and generated video directory
 
 ## 🤖 Embodied Task Evaluation
 
@@ -68,12 +68,11 @@ Before first use:
 - read `PUBLIC_RELEASE.md`
 - update local model and dataset paths in the relevant config files
 - keep API keys only in environment variables, never in tracked files
+- note that bundled third-party components may keep their own original licenses
 
 ## 🏆 Leaderboard
 
 The official WorldArena leaderboard is hosted on HuggingFace: [![Leaderboard](https://img.shields.io/badge/Leaderboard-HuggingFace-2D2D2D?style=flat&logo=huggingface&logoColor=ffcc00)](https://huggingface.co/spaces/WorldArena/WorldArena). It provides standardized evaluation results across video perception quality, embodied task functionality, and the unified EWMScore. 
-
-
 
 
 

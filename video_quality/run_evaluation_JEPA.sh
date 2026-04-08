@@ -1,14 +1,14 @@
 #!/bin/bash
 set -euo pipefail
-# Usage: run_evaluation_JEPA.sh <GEN_VIDEO_DIR> [REAL_VIDEO_DIR]
+# Usage: run_evaluation_JEPA.sh <GEN_VIDEO_DIR> <REAL_VIDEO_DIR>
 
 GEN_VIDEO_DIR=${1:-}
 ROOT_DIR=$(cd -- "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-REAL_VIDEO_DIR=${2:-"$ROOT_DIR/../source/gt_video"}
+REAL_VIDEO_DIR=${2:-}
 WORLD_ARENA_JEPA_ENV=${WORLD_ARENA_JEPA_ENV:-WorldArena_JEPA}
 
-if [[ -z "$GEN_VIDEO_DIR" ]]; then
-  echo "Usage: $0 <GEN_VIDEO_DIR> [REAL_VIDEO_DIR]"
+if [[ -z "$GEN_VIDEO_DIR" || -z "$REAL_VIDEO_DIR" ]]; then
+  echo "Usage: $0 <GEN_VIDEO_DIR> <REAL_VIDEO_DIR>"
   exit 1
 fi
 

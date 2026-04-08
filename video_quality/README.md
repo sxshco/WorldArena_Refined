@@ -114,7 +114,8 @@ Example:
 ]
 ```
 
-In the public copy, the sample file `../source/summary.json` uses repo-relative paths so it can be reused after cloning.
+The public repository does not require a built-in `source/` directory.
+Prepare your own `summary.json` and point it to your local GT videos and initial frames.
 
 #### 5.2 Generated Video Directory for Standard Visual Quality Metrics
 For `run_evaluation.sh`, the current preprocessing code expects a flat generated-video directory:
@@ -194,7 +195,7 @@ Example:
 
 ```bash
 cd video_quality
-bash run_evaluation.sh my_model ../source/ours_test ../source/summary.json "image_quality,photometric_smoothness,motion_smoothness"
+bash run_evaluation.sh my_model /path/to/generated_videos /path/to/summary.json "image_quality,photometric_smoothness,motion_smoothness"
 ```
 
 What `run_evaluation.sh` actually does:
@@ -293,10 +294,10 @@ JEPA similarity requires `WorldArena_JEPA`.
 ```bash
 cd video_quality
 export WORLD_ARENA_JEPA_ENV=WorldArena_JEPA
-bash run_evaluation_JEPA.sh <VIDEO_DIR>
+bash run_evaluation_JEPA.sh <VIDEO_DIR> /path/to/gt_video
 ```
 
-If your GT directory is not `source/gt_video`, pass it explicitly:
+The second argument is required because the public repository no longer ships a default GT directory:
 
 ```bash
 cd video_quality

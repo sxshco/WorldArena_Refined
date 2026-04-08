@@ -181,8 +181,8 @@ export WORLD_ARENA_PYTHON=/path/to/your/env/bin/python
 cd video_quality
 bash run_evaluation.sh \
   my_model \
-  ../source/ours_test \
-  ../source/summary.json \
+  /path/to/generated_videos \
+  /path/to/summary.json \
   "image_quality,photometric_smoothness,motion_smoothness"
 ```
 
@@ -281,8 +281,11 @@ JEPA similarity 需要使用 `WorldArena_JEPA` 环境。
 
 ```bash
 cd video_quality
-bash run_evaluation_JEPA.sh <VIDEO_DIR>
+export WORLD_ARENA_JEPA_ENV=WorldArena_JEPA
+bash run_evaluation_JEPA.sh <VIDEO_DIR> /path/to/gt_video
 ```
+
+第二个参数必须显式提供 GT 视频目录，因为公开仓库不再内置 `source/gt_video`。
 
 ### 8. 结果汇总
 结果汇总使用 `WorldArena` 环境：
