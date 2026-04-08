@@ -1,0 +1,18 @@
+[
+    {
+        "gt_path": "../source/gt_video/episode0.mp4",
+        "image": "../source/gt_frames/episode0.jpg",
+        "prompt": [
+            "The jaws release, the ball and block are released and fall onto the pillow."
+        ],
+        "task_id": "task0"
+    },
+    {
+        "gt_path": "../source/gt_video/episode1.mp4",
+        "image": "../source/gt_frames/episode1.jpg",
+        "prompt": [
+            "The jaws release, the ball and block are released and fall onto the pillow."
+        ],
+        "task_id": "task1"
+    }
+]
