@@ -133,6 +133,54 @@ wget -O ssv2-probe.pth.tar https://dl.fbaipublicfiles.com/jepa/vith16/ssv2-probe
 - 标准预处理是按上述规则匹配生成视频文件，而不是按 `<MODEL_NAME>` 匹配
 - 如果所有候选文件名都找不到，预处理现在会直接报清晰错误，而不会再静默跳过该样本
 
+#### 5.3 待评估数据目录结构示例
+下面给出一个在运行 `run_evaluation.sh` 之前，用户自行准备好的待评估数据目录示例：
+
+```text
+/path/to/eval_case/
+├── gt/
+│   ├── task0/
+│   │   ├── episode0.mp4
+│   │   └── episode0.png
+│   └── task1/
+│       ├── episode1.mp4
+│       └── episode1.png
+├── generated_videos/
+│   ├── task0_episode0.mp4
+│   └── task1_episode1.mp4
+└── summary.json
+```
+
+对应的 `summary.json` 可以写成：
+
+```json
+[
+  {
+    "task_id": "task0",
+    "gt_path": "/path/to/eval_case/gt/task0/episode0.mp4",
+    "image": "/path/to/eval_case/gt/task0/episode0.png",
+    "prompt": [
+      "Lift the narrow-necked bottle using the right arm and hold upright."
+    ]
+  },
+  {
+    "task_id": "task1",
+    "gt_path": "/path/to/eval_case/gt/task1/episode1.mp4",
+    "image": "/path/to/eval_case/gt/task1/episode1.png",
+    "prompt": [
+      "Move the cup to the target area."
+    ]
+  }
+]
+```
+
+然后执行：
+
+```bash
+cd video_quality
+bash run_evaluation.sh my_model /path/to/eval_case/generated_videos /path/to/eval_case/summary.json "image_quality,photometric_smoothness,motion_smoothness"
+```
+
 ### 6. 外部权重与配置
 请在 [config](config/config.yaml) 中配置本地权重和 I/O 路径。除非你同时修改了依赖它的代码，否则请保持 `model_name: test` 不变。
 

@@ -144,6 +144,54 @@ Important:
 - The standard preprocessing step matches generated files by the rules above, not by `<MODEL_NAME>`
 - If none of the candidate filenames exist, preprocessing now fails early with a clear error instead of silently skipping the sample
 
+#### 5.3 Concrete Example Directory Layout
+Here is a concrete example of a user-prepared evaluation dataset before running `run_evaluation.sh`:
+
+```text
+/path/to/eval_case/
+├── gt/
+│   ├── task0/
+│   │   ├── episode0.mp4
+│   │   └── episode0.png
+│   └── task1/
+│       ├── episode1.mp4
+│       └── episode1.png
+├── generated_videos/
+│   ├── task0_episode0.mp4
+│   └── task1_episode1.mp4
+└── summary.json
+```
+
+The matching `summary.json` can look like:
+
+```json
+[
+  {
+    "task_id": "task0",
+    "gt_path": "/path/to/eval_case/gt/task0/episode0.mp4",
+    "image": "/path/to/eval_case/gt/task0/episode0.png",
+    "prompt": [
+      "Lift the narrow-necked bottle using the right arm and hold upright."
+    ]
+  },
+  {
+    "task_id": "task1",
+    "gt_path": "/path/to/eval_case/gt/task1/episode1.mp4",
+    "image": "/path/to/eval_case/gt/task1/episode1.png",
+    "prompt": [
+      "Move the cup to the target area."
+    ]
+  }
+]
+```
+
+Then run:
+
+```bash
+cd video_quality
+bash run_evaluation.sh my_model /path/to/eval_case/generated_videos /path/to/eval_case/summary.json "image_quality,photometric_smoothness,motion_smoothness"
+```
+
 ### 6. External Weights and Config
 Configure local weights and I/O paths in [config](config/config.yaml). Keep `model_name: test` unless you also update the code that depends on it.
 
